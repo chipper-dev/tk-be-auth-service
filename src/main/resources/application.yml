@@ -1,0 +1,52 @@
+server:
+  port: 9100
+
+spring:
+  application:
+    name: auth-service
+  datasource:
+    hikari:
+      connectionTimeout: 20000
+      maximumPoolSize: 5
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+#  cloud:
+##    config:
+##      uri: ${CONFIG_SERVICE_URL}:8888
+##      name: eureka-client, service-routes
+#  management:
+#    security:
+#      enabled: false
+
+#ENABLE DYNAMIC ROUTING
+management:
+  endpoints:
+    routes:
+      enabled: true
+    web:
+      exposure:
+        include: "*"
+
+app:
+  auth:
+    tokenSecret: ${TOKEN_SECRET}
+#    tokenExpirationMsec: 864000000 #10 days
+#    tokenExpirationMsec: 300000 #5 mins
+#    tokenExpirationMsec: 600000 #10 mins
+#    tokenExpirationMsec: 3600000 #1 hour
+    tokenExpirationMsec: 7200000 #2 hours
+#    tokenExpirationMsec: 86400000 #1 days
+  
+eureka: 
+  client:
+    service-url:
+      default-zone: ${EUREKA_SERVER_URL}/eureka/
+#    healthcheck:
+#      enabled: true
+#    lease:
+#      duration: 5
+#  instance:
+#    leaseRenewalIntervalInSeconds: 5
+#    leaseExpirationDurationInSeconds: 2
+#    prefer-ip-address: true
