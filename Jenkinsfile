@@ -1,9 +1,9 @@
 node{
     def app
-    def name = "tk-be-api-gateway"
-    def port = "9090"
+    def name = "tk-be-auth-service"
+    def port = "9200"
     def network = "tk-be-network"
-    def eurekaServer = "http://tk-be-api-gateway:8761"
+    def eurekaServer = "http://tk-be-discovery-service:8761"
     def build = "${env.BUILD_NUMBER}"
     def version = "1"
     def imageName = "chippermitrais/$name"
@@ -11,6 +11,10 @@ node{
     def mvnHome = tool name: 'maven-default', type: 'maven'
     def mvnCMD = "${mvnHome}/bin/mvn"
     def remote = [:]
+    def db_username = "${env.dbAuthUser}"
+	def db_password = "${env.dbAuthPassword}"
+	def db_url = "jdbc:postgresql://chippermitrais.ddns.net:5432/postgres"
+	def activeEnv = "prod"
     remote.name = 'chippermitrais'
     remote.host = 'chippermitrais.ddns.net'
     remote.allowAnyHosts = true
@@ -48,7 +52,7 @@ node{
 
                 sshCommand remote: remote, command: "docker images $imageName -q | xargs --no-run-if-empty docker rmi -f"
 
-                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer --restart always -d $image"
+                sshCommand remote: remote, command: "docker run --name $name -p $port:$port --network $network -e EUREKA_SERVER_URL=$eurekaServer -e DB_USERNAME=$db_username -e DB_PASSWORD=$db_password -e DB_URL=$db_url --restart always -d $image"
         }
     }
 }
