@@ -8,10 +8,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import com.mitrais.chipper.temankondangan.be.authservice.exception.ResourceNotFoundException;
 import com.mitrais.chipper.temankondangan.be.authservice.model.User;
 import com.mitrais.chipper.temankondangan.be.authservice.repository.UserRepository;
 import com.mitrais.chipper.temankondangan.be.authservice.security.UserPrincipal;
-import com.mitrais.chipper.temankondangan.be.common.exception.ResourceNotFoundException;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

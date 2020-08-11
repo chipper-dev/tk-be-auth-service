@@ -15,11 +15,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mitrais.chipper.temankondangan.be.authservice.common.CommonResource;
+import com.mitrais.chipper.temankondangan.be.authservice.common.ResponseBody;
 import com.mitrais.chipper.temankondangan.be.authservice.model.LoginWrapper;
 import com.mitrais.chipper.temankondangan.be.authservice.security.TokenProvider;
 import com.mitrais.chipper.temankondangan.be.authservice.service.AuthService;
-import com.mitrais.chipper.temankondangan.be.common.response.CommonResource;
-import com.mitrais.chipper.temankondangan.be.common.response.ResponseBody;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
